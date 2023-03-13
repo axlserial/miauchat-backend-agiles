@@ -20,6 +20,10 @@ Backend de la aplicación MiauChat.
 
 1. Ejecutar el servidor de desarrollo con `npm run start:dev`
 
+### Ejecución de pruebas
+
+1. Ejecutar las pruebas con `npm run test`
+
 ## Estructura del proyecto
 
 ### Directorios
