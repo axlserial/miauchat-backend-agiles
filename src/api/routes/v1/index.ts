@@ -1,5 +1,5 @@
 import express from 'express';
-import usersRouter from './user.route';
+import usersRouter from './users.route';
 
 // Enrutador del endpoint /api/v1
 const v1Router = express.Router();
