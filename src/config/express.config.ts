@@ -23,7 +23,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // -- Routes
+
+// -- / -- Home route
+app.get('/', (req, res) => {
+	res.send({ message: 'API de la aplicación MiauChat' });
+});
+
+// -- /api/v1 -- API route
 app.use('/api/v1', v1Router);
+
+// -- / -- Not found route
+app.all('*', (req, res) => {
+	res.status(404).json({
+		message: 'Ruta no encontrada'
+	});
+});
 
 // -- SocketIO
 const server = socketIOConfig(app);

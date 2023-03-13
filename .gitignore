@@ -9,3 +9,9 @@ dist
 
 # Environment variables
 .env
+
+# Logs
+logs
+
+# Jest coverage
+coverage
