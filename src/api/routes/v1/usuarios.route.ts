@@ -10,4 +10,7 @@ usuariosRouter.get('/', usersController.getUsuarios);
 // Registra un usuario
 usuariosRouter.post('/registro', usersController.registrarUsuario);
 
+// Iniciar sesión
+usuariosRouter.post('/sesion', usersController.iniciarSesion);
+
 export default usuariosRouter;

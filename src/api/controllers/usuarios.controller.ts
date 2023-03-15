@@ -47,7 +47,32 @@ const registrarUsuario = async (req: Request, res: Response) => {
 	res.status(500).json({ message: 'Error al registrar el usuario' });
 };
 
+const iniciarSesion = async (req: Request, res: Response) => {
+	const { usuario, password} = req.body;
+
+	// Validar que los datos no estén vacíos
+	if (!usuario || !password) {
+		res.status(400).json({ message: 'Campos incompletos' });
+		return;
+	}
+
+	// Validar que el usuario no exista
+	const usuarioExiste = await usuariosService.getUsuarioByNombre(usuario);
+
+	if (usuarioExiste) {
+		if(password == usuarioExiste[0].password){
+			res.json({"usuario": usuarioExiste[0].usuario, "password": usuarioExiste[0].password})
+		}
+		// En caso de que no se haya ingresado una contraseña valida o un usuario valido
+		res.status(500).json({ message: 'Contraseña y/o usuario incorrectos' });
+	}
+
+	// En caso de que no se haya ingresado una contraseña valida o un usuario valido
+	res.status(500).json({ message: 'Contraseña y/o usuario incorrectos' });
+};
+
 export default {
 	getUsuarios,
-	registrarUsuario
+	registrarUsuario,
+	iniciarSesion
 };
