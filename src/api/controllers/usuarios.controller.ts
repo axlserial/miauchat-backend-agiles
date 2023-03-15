@@ -60,11 +60,17 @@ const iniciarSesion = async (req: Request, res: Response) => {
 	const usuarioExiste = await usuariosService.getUsuarioByNombre(usuario);
 
 	if (usuarioExiste) {
-		if(password == usuarioExiste[0].password){
-			res.json({"usuario": usuarioExiste[0].usuario, "password": usuarioExiste[0].password})
+		if(password == usuarioExiste.password){
+			// Guardar el ID del usuario en la sesión
+			req.session.idUsuario = usuarioExiste.id;
+
+			// Respuesta al encontrar al usuario
+			res.status(201).json({id: usuarioExiste.id, usuario: usuarioExiste.usuario, foto_perfil: usuarioExiste.foto_perfil});
+			return;
 		}
 		// En caso de que no se haya ingresado una contraseña valida o un usuario valido
 		res.status(500).json({ message: 'Contraseña y/o usuario incorrectos' });
+		return;
 	}
 
 	// En caso de que no se haya ingresado una contraseña valida o un usuario valido
