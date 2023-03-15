@@ -31,14 +31,14 @@ const registrarUsuario = async (req: Request, res: Response) => {
 
 	// Validar que el usuario se haya registrado correctamente
 	if (usuarioRegistrado.length > 0 && usuarioRegistrado[0]) {
+		// Guardar el ID del usuario en la sesión
 		req.session.idUsuario = usuarioRegistrado[0];
+
+		// Enviar la respuesta, con el mensa
 		res.status(201).json({
-			message: 'Usuario registrado',
-			data: {
-				id: usuarioRegistrado[0],
-				usuario,
-				foto_perfil
-			}
+			id: usuarioRegistrado[0],
+			usuario,
+			foto_perfil
 		});
 		return;
 	}
