@@ -8,4 +8,5 @@ export const COMMON_CONSTANTS = {
 	user: process.env.USER as string,
 	password: process.env.PASSWORD as string,
 	dbname: process.env.DBNAME as string,
+	session_secret: process.env.SESSION_SECRET as string
 };

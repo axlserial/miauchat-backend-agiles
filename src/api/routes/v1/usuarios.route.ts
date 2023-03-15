@@ -7,4 +7,7 @@ const usuariosRouter = express.Router();
 // Obtiene todos los usuarios
 usuariosRouter.get('/', usersController.getUsuarios);
 
+// Registra un usuario
+usuariosRouter.post('/registro', usersController.registrarUsuario);
+
 export default usuariosRouter;

@@ -2,7 +2,16 @@ import express from 'express';
 import corsConfig from './cors.config';
 import morgan from 'morgan';
 import constants from '../constants';
+import sessions from 'express-session';
+import sessionConfig from './session.config';
 import socketIOConfig from './socketIO.config';
+
+// id para identificar la sesión
+declare module 'express-session' {
+	interface SessionData {
+		idUsuario: number;
+	}
+}
 
 // import routes
 import v1Router from '../api/routes/v1';
@@ -21,6 +30,9 @@ app.use(morgan(constants.logs));
 // -- Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// -- Session
+app.use(sessions(sessionConfig));
 
 // -- Routes
 
