@@ -1,7 +1,7 @@
 import express from 'express';
 import usuariosController from '../../controllers/usuarios.controller';
 
-// Enrutador del endpoint /api/v1/users
+// Enrutador del endpoint /api/v1/usuarios
 const usuariosRouter = express.Router();
 
 // Obtiene todos los usuarios

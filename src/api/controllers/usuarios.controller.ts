@@ -2,7 +2,8 @@ import { Request, Response } from 'express';
 import usuariosService from '../services/usuarios.service';
 
 const getUsuarios = async (req: Request, res: Response) => {
-	res.json({ message: await usuariosService.getUsuarios() });
+	const data = await usuariosService.getUsuarios();
+	res.json(data);
 };
 
 const registrarUsuario = async (req: Request, res: Response) => {
