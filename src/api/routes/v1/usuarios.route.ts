@@ -1,16 +1,22 @@
 import express from 'express';
-import usersController from '../../controllers/usuarios.controller';
+import usuariosController from '../../controllers/usuarios.controller';
 
 // Enrutador del endpoint /api/v1/users
 const usuariosRouter = express.Router();
 
 // Obtiene todos los usuarios
-usuariosRouter.get('/', usersController.getUsuarios);
+usuariosRouter.get('/', usuariosController.getUsuarios);
 
 // Registra un usuario
-usuariosRouter.post('/registro', usersController.registrarUsuario);
+usuariosRouter.post('/registro', usuariosController.registrarUsuario);
 
 // Iniciar sesión
-usuariosRouter.post('/sesion', usersController.iniciarSesion);
+usuariosRouter.post('/sesion', usuariosController.iniciarSesion);
+
+// Cerrar sesión
+usuariosRouter.get('/sesion/cerrar', usuariosController.cerrarSesion);
+
+// Ruta para saber quién soy
+usuariosRouter.get('/whoami', usuariosController.whoami);
 
 export default usuariosRouter;
