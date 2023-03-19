@@ -1,5 +1,4 @@
 import db from '../../config/knex.config';
-import nanoid from '../../config/nanoid.config';
 
 /**
  * Servicio que regresa todas las salas
@@ -15,10 +14,9 @@ const getSalas = async () => {
 const crearSala = async (
 	id:string,
 	creador_id: number,
-    nombre_sala: string,
-	ultimo_mensaje:String
+    nombre_sala: string
 ): Promise<JSON[]> => {
-	return db('salas').insert([{ id, creador_id, nombre_sala,ultimo_mensaje }],['id','creador_id','nombre_sala','ultimo_mensaje']);
+	return db('salas').insert([{ id, creador_id, nombre_sala}]);
 };
 /**
  * Servicio que regresa las salas por usuario 
