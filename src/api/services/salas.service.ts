@@ -1,4 +1,5 @@
 import db from '../../config/knex.config';
+import nanoid from '../../config/nanoid.config';
 
 /**
  * Servicio que regresa todas las salas
