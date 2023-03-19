@@ -28,8 +28,44 @@ const getSalasById = async (
 ): Promise<JSON[]> => {
     return db.select('*').from('salas').where({ creador_id });
 };
+
+/**
+ * Servicio que regresa al administrador de una sala
+ * @param sala_id ID de la sala
+ * @returns Administrador de la sala
+ */
+const getAdministrador = async (sala_id: number) => {
+	return db.select('creador_id').from('salas').where({ id: sala_id });
+};
+
+/**
+ * Servicio que ingresa a un usuario a una sala
+ * @param id_usuario ID del usuario
+ * @param sala_id	ID de la sala
+ * @returns sala 
+ */
+const addParticipante = async (sala: any): Promise <JSON[]> => {
+	const { usuario_id, sala_id } = sala;
+	return db('sala_participantes').insert({
+		usuario_id,
+		sala_id
+	});
+};
+/**
+ * Servicio que regresa los participantes de una sala
+ * @param sala_id ID de la sala
+ * @returns participantes
+ */
+const getParticipantes = async (sala_id: number): Promise<JSON[]> => {
+	return db.select('usuario_id').from('sala_participantes').where({ sala_id });
+};
+
+
 export default {
 	getSalas,
 	crearSala,
-    getSalasById
+    getSalasById,
+	getAdministrador,
+	addParticipante,
+	getParticipantes
 };
