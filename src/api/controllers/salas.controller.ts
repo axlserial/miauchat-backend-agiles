@@ -65,13 +65,6 @@ const addParticipante = async (req: Request, res: Response) => {
 		return;
 	}
 
-	// Validar que el usuario no sea el administrador
-	const administrador = await salasService.getAdministrador(sala_id);
-	if (administrador[0].creador_id === usuario_id) {
-		res.status(400).json({ message: 'El usuario es el administrador de la sala' });
-		return;
-	}
-
 	// Agregar usuario a la sala
 	const ingresoUsuario = await salasService.addParticipante({
 		usuario_id,
@@ -105,11 +98,12 @@ const getParticipantes = async (req: Request, res: Response) => {
 	res.status(400).json({ message: 'No se pudo obtener los participantes' });
 };
 
+
 export default {
 	getSalas,
 	crearSala,
     getSalasById,
 	getAdministrador,
 	addParticipante,
-	getParticipantes
+	getParticipantes,
 };
