@@ -7,4 +7,10 @@ const salasRouter = express.Router();
 // Obtiene todos los mensajes
 salasRouter.get('/', salasController.getSalas);
 
+//obtiene todos las salas del usuario
+salasRouter.get('/getSalasById', salasController.getSalasById);
+
+// Crear sala
+salasRouter.post('/crear', salasController.crearSala);
+
 export default salasRouter;
