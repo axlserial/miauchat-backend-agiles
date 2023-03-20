@@ -13,9 +13,6 @@ salasRouter.get('/getSalasById', salasController.getSalasById);
 // Crear sala
 salasRouter.post('/crear', salasController.crearSala);
 
-// Obtener administrador de una sala
-salasRouter.get('/administrador', salasController.getAdministrador);
-
 // Agregar usuario a una sala
 salasRouter.post('/participantes', salasController.addParticipante);
 

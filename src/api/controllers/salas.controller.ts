@@ -37,17 +37,6 @@ const getSalasById = async (req: Request, res: Response) => {
 	res.json({ message: await salasService.getSalasById(creador_id) });
 };
 
-const getAdministrador = async (req: Request, res: Response) => {
-	const { sala_id } = req.body;
-	const data = await salasService.getAdministrador(sala_id);
-
-	// Validar que el administrador se haya encontrado
-	if (data.length > 0) {
-		res.json({message: data});
-		return;
-	}
-	res.status(404).json({ message: 'No se encontró el administrador' });
-};
 
 const addParticipante = async (req: Request, res: Response) => {
 	const { usuario_id, sala_id } = req.body;
@@ -103,7 +92,6 @@ export default {
 	getSalas,
 	crearSala,
     getSalasById,
-	getAdministrador,
 	addParticipante,
 	getParticipantes,
 };

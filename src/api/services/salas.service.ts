@@ -29,14 +29,6 @@ const getSalasById = async (
     return db.select('*').from('salas').where({ creador_id });
 };
 
-/**
- * Servicio que regresa al administrador de una sala
- * @param sala_id ID de la sala
- * @returns Administrador de la sala
- */
-const getAdministrador = async (sala_id: number) => {
-	return db.select('creador_id').from('salas').where({ id: sala_id });
-};
 
 /**
  * Servicio que ingresa a un usuario a una sala
@@ -65,7 +57,6 @@ export default {
 	getSalas,
 	crearSala,
     getSalasById,
-	getAdministrador,
 	addParticipante,
 	getParticipantes
 };
