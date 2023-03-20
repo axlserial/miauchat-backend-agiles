@@ -19,4 +19,7 @@ salasRouter.post('/participantes', salasController.addParticipante);
 // Obtener participantes de una sala
 salasRouter.get('/participantes', salasController.getParticipantes);
 
+// Elimina un participante de la sala
+salasRouter.post('/eliminar-participante', salasController.eliminarParticipante);
+
 export default salasRouter;

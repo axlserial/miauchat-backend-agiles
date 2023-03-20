@@ -6,24 +6,21 @@ const getSalas = async (req: Request, res: Response) => {
 	const data = await salasService.getSalas();
 	res.json(data);
 };
+
 const crearSala = async (req: Request, res: Response) => {
-	const id= await nanoid()
+	const id = await nanoid();
 	//campos no vacios
-	const { creador_id,nombre_sala} = req.body;
+	const { creador_id, nombre_sala } = req.body;
 	if (!creador_id || !nombre_sala) {
 		res.status(400).json({ message: 'Faltan datos' });
 		return;
 	}
 	// Registrar la sala
-	const ingresoSala = await salasService.crearSala(
-		id,
-		creador_id,
-		nombre_sala
-	);
+	const ingresoSala = await salasService.crearSala(id, creador_id, nombre_sala);
 	// Validar que la sala se haya registrado correctamente
-	if (ingresoSala.length > 0 ) {
+	if (ingresoSala.length > 0) {
 		res.status(201).json({
-			id:id,
+			id: id,
 			creador_id,
 			nombre_sala
 		});
@@ -31,12 +28,12 @@ const crearSala = async (req: Request, res: Response) => {
 	}
 	// En caso de que no se haya registrado correctamente
 	res.status(500).json({ message: 'Error al ingresar la sala' });
-}   
-const getSalasById = async (req: Request, res: Response) => {
-	const {creador_id} = req.body
-	res.json({ message: await salasService.getSalasById(creador_id) });
 };
 
+const getSalasById = async (req: Request, res: Response) => {
+	const { creador_id } = req.body;
+	res.json({ message: await salasService.getSalasById(creador_id) });
+};
 
 const addParticipante = async (req: Request, res: Response) => {
 	const { usuario_id, sala_id } = req.body;
@@ -87,11 +84,32 @@ const getParticipantes = async (req: Request, res: Response) => {
 	res.status(400).json({ message: 'No se pudo obtener los participantes' });
 };
 
+const eliminarParticipante = async (req: Request, res: Response) => {
+	const { usuario_id, sala_id } = req.body;
+
+	// Validación de datos
+	if (!usuario_id || !sala_id) {
+		res.status(400).json({ message: 'Faltan datos' });
+		return;
+	}
+
+	// elimina el participante
+	const resultado = await salasService.deleteParticipante(usuario_id, sala_id);
+
+	// Sí no se afectó ninguna fila de la tabla
+	if (!resultado) {
+		res.status(400).json({ message: 'Error al eliminar el usuario de la sala' });
+		return;
+	}
+
+	res.json({ message: 'Usuario eliminado con éxito' });
+};
 
 export default {
 	getSalas,
 	crearSala,
-    getSalasById,
+	getSalasById,
 	addParticipante,
 	getParticipantes,
+	eliminarParticipante
 };
