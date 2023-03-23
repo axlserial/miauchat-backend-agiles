@@ -14,7 +14,7 @@ salasRouter.get('/getSalasById', salasController.getSalasById);
 salasRouter.post('/crear', salasController.crearSala);
 
 // Agregar usuario a una sala
-salasRouter.post('/participantes', salasController.addParticipante);
+salasRouter.post('/addParticipante', salasController.addParticipante);
 
 // Obtener participantes de una sala
 salasRouter.get('/participantes', salasController.getParticipantes);
