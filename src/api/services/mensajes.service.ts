@@ -12,7 +12,7 @@ const getMensajes = async () => {
  * Servicio que registra un mensaje en la base de datos
  */
 const registrarMensaje = async (mensaje: mensaje) => {
-	return db('mensajes').insert(mensaje, ['id']);
+	return db('mensajes').insert(mensaje);
 };
 
 /**
