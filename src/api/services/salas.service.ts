@@ -1,10 +1,23 @@
 import db from '../../config/knex.config';
+import { sala } from '../../types';
 
 /**
  * Servicio que regresa todas las salas
  */
 const getSalas = async () => {
-	return db.select('*').from('salas');
+	return db.select('*').from<sala>('salas');
+};
+
+/**
+ * Servicio que regresa los IDs de las salas a las que un usuario
+ * está inscrito
+ */
+const getSalasByUsuario = async (id: number) => {
+	return db
+		.select('salas.*')
+		.from('salas')
+		.join('sala_participantes', 'salas.id', '=', 'sala_participantes.sala_id')
+		.where<sala[]>('sala_participantes.usuario_id', id);
 };
 
 /**
@@ -64,6 +77,7 @@ const deleteParticipante = async (usuario_id: number, sala_id: string) => {
 
 export default {
 	getSalas,
+	getSalasByUsuario,
 	crearSala,
 	getSalasById,
 	addParticipante,

@@ -35,6 +35,13 @@ const getSalasById = async (req: Request, res: Response) => {
 	res.json({ message: await salasService.getSalasById(creador_id) });
 };
 
+const getSalasUsuario = async (req: Request, res: Response) => {
+	const { usuario_id } = req.params;
+
+	const data = await salasService.getSalasByUsuario(Number(usuario_id));
+	res.json(data);
+};
+
 const addParticipante = async (req: Request, res: Response) => {
 	const { usuario_id, sala_id } = req.body;
 
@@ -109,6 +116,7 @@ export default {
 	getSalas,
 	crearSala,
 	getSalasById,
+	getSalasUsuario,
 	addParticipante,
 	getParticipantes,
 	eliminarParticipante

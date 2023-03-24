@@ -10,11 +10,14 @@ salasRouter.get('/', salasController.getSalas);
 //obtiene todos las salas del usuario
 salasRouter.get('/getSalasById', salasController.getSalasById);
 
+// obtiene salas en que el usuario dado está inscrito
+salasRouter.get('/salas-usuario/:usuario_id', salasController.getSalasUsuario);
+
 // Crear sala
 salasRouter.post('/crear', salasController.crearSala);
 
 // Agregar usuario a una sala
-salasRouter.post('/participantes', salasController.addParticipante);
+salasRouter.post('/addParticipante', salasController.addParticipante);
 
 // Obtener participantes de una sala
 salasRouter.get('/participantes', salasController.getParticipantes);

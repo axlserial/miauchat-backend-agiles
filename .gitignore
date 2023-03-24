@@ -15,3 +15,8 @@ logs
 
 # Jest coverage
 coverage
+
+# exclude uploads folder items
+uploads/*
+
+!uploads/.gitkeep
