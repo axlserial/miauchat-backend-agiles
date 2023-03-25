@@ -47,7 +47,9 @@ app.get('/', (req, res) => {
 });
 
 // -- client -- Static files
-clientConfig(app);
+if (constants.environment === 'production') {
+	clientConfig(app);
+}
 
 // -- /api/v1 -- API route
 app.use('/api/v1', v1Router);

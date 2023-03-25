@@ -20,3 +20,6 @@ coverage
 # exclude uploads folder items
 uploads/*
 !uploads/.gitkeep
+
+# exclude client folder items
+client/*
