@@ -11,12 +11,12 @@ dist
 .env
 
 # Logs
-logs
+logs/*
+!logs/.gitkeep
 
 # Jest coverage
 coverage
 
 # exclude uploads folder items
 uploads/*
-
 !uploads/.gitkeep

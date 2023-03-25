@@ -1,6 +1,6 @@
 import express from 'express';
 import corsConfig from './cors.config';
-import morgan from 'morgan';
+import morganConfig from './morgan.config';
 import constants from '../constants';
 import sessions from 'express-session';
 import sessionConfig from './session.config';
@@ -25,7 +25,7 @@ const app = express();
 app.use(corsConfig());
 
 // -- Logs
-app.use(morgan(constants.logs));
+app.use(morganConfig(constants.logs));
 
 // -- Body parser
 app.use(express.json());
