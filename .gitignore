@@ -22,4 +22,4 @@ uploads/*
 !uploads/.gitkeep
 
 # exclude client folder items
-client/*
+client
