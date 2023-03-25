@@ -1,15 +1,13 @@
-import path from 'path';
+import { join } from 'path';
 import { config } from 'dotenv';
 
 // Obtenemos el entorno de ejecución
 const ENV = process.env.NODE_ENV || 'development';
 
-// En caso de que estemos en dev, cargamos las variables de entorno
-if (ENV === 'development') {
-	config({
-		path: path.join(__dirname, '../../.env')
-	});
-}
+// Cargamos las variables de entorno
+config({
+	path: join(__dirname, '../../.env')
+});
 
 // Importamos las constantes
 import { COMMON_CONSTANTS } from './constants.common';
