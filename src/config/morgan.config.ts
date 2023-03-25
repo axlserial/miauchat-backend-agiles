@@ -8,7 +8,7 @@ const morganConfig = (logs: string) => {
 	if (logs === 'dev') return morgan('dev');
 	// Si no, devolvemos morgan('common') con el stream de logs
 	else
-		return morgan('common', {
+		return morgan('short', {
 			stream: fs.createWriteStream(join(__dirname, '../../logs/access.log'), {
 				flags: 'a'
 			})
