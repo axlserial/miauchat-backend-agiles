@@ -2,7 +2,7 @@
  * Constantes comunes en todos los entornos (dev, prod)
  */
 export const COMMON_CONSTANTS = {
-	app_port: Number(process.env.APP_PORT),
+	port: Number(process.env.PORT),
 	host: process.env.HOST as string,
 	db_port: Number(process.env.DB_PORT),
 	user: process.env.USER as string,
