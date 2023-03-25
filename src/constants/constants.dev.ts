@@ -2,5 +2,6 @@
  * Constantes de desarrollo
  */
 export const DEV_CONSTANTS = {
-	logs: 'dev'
+	logs: 'dev',
+	environment: 'development',
 };

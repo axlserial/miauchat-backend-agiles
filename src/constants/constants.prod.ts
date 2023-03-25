@@ -2,5 +2,6 @@
  * Constantes de producción
  */
 export const PROD_CONSTANTS = {
-	logs: 'production'
+	logs: 'production',
+	environment: 'production',
 };

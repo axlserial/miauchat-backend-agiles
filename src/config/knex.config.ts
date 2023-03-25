@@ -8,7 +8,8 @@ const db = knex({
 		port: constants.db_port,
 		user: constants.user,
 		password: constants.password,
-		database: constants.dbname
+		database: constants.dbname,
+		ssl: constants.environment === 'production' ? { rejectUnauthorized: true } : false
 	}
 });
 
