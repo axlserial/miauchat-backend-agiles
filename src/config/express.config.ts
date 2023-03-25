@@ -4,6 +4,7 @@ import corsConfig from './cors.config';
 import morganConfig from './morgan.config';
 import constants from '../constants';
 import sessions from 'express-session';
+import clientConfig from './client.config';
 import sessionConfig from './session.config';
 import socketIOConfig from './socketIO.config';
 
@@ -44,6 +45,9 @@ app.use(sessions(sessionConfig));
 app.get('/', (req, res) => {
 	res.send({ message: 'API de la aplicación MiauChat' });
 });
+
+// -- client -- Static files
+clientConfig(app);
 
 // -- /api/v1 -- API route
 app.use('/api/v1', v1Router);
