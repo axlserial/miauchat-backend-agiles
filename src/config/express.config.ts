@@ -1,4 +1,5 @@
 import express from 'express';
+import compression from 'compression';
 import corsConfig from './cors.config';
 import morganConfig from './morgan.config';
 import constants from '../constants';
@@ -20,6 +21,9 @@ import v1Router from '../api/routes/v1';
 const app = express();
 
 // Middlewares
+
+// -- Compression
+app.use(compression());
 
 // -- CORS
 app.use(corsConfig());
