@@ -76,6 +76,10 @@ const deleteParticipante = async (usuario_id: number, sala_id: string) => {
 	return db('sala_participantes').where({ usuario_id, sala_id }).del();
 };
 
+const changeNameSala = async (sala_id: string, nuevo_nombre: string) => {
+	return db('salas').where({ sala_id }).update({ nombre_sala: nuevo_nombre });
+};
+
 export default {
 	getSalas,
 	getSalasByUsuario,
@@ -83,5 +87,6 @@ export default {
 	getSalasById,
 	addParticipante,
 	getParticipantes,
-	deleteParticipante
+	deleteParticipante,
+	changeNameSala
 };

@@ -112,6 +112,18 @@ const eliminarParticipante = async (req: Request, res: Response) => {
 	res.json({ message: 'Usuario eliminado con éxito' });
 };
 
+const cambiarNombreSala = async (req: Request, res: Response) => {
+	const { sala_id, nuevo_nombre} = req.body
+	const resultado = await salasService.changeNameSala(sala_id, nuevo_nombre);
+	// Sí no se afectó ninguna fila de la tabla
+	if (!resultado) {
+		res.status(400).json({ message: 'Error al cambiar el nombre de la sala' });
+		return;
+	}
+
+	res.json({ message: 'Nombre de Sala modificado con éxito' });
+}
+
 export default {
 	getSalas,
 	crearSala,
@@ -119,5 +131,6 @@ export default {
 	getSalasUsuario,
 	addParticipante,
 	getParticipantes,
-	eliminarParticipante
+	eliminarParticipante,
+	cambiarNombreSala
 };
