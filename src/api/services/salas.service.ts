@@ -17,7 +17,8 @@ const getSalasByUsuario = async (id: number) => {
 		.select('salas.*')
 		.from('salas')
 		.join('sala_participantes', 'salas.id', '=', 'sala_participantes.sala_id')
-		.where<sala[]>('sala_participantes.usuario_id', id);
+		.where<sala[]>('sala_participantes.usuario_id', id)
+		.orderBy('salas.ultimo_mensaje', 'desc');
 };
 
 /**
