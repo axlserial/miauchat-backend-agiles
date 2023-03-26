@@ -92,7 +92,7 @@ const getParticipantes = async (req: Request, res: Response) => {
 };
 
 const eliminarParticipante = async (req: Request, res: Response) => {
-	const { usuario_id, sala_id } = req.body;
+	const { usuario_id, sala_id } = req.params;
 
 	// Validación de datos
 	if (!usuario_id || !sala_id) {
@@ -101,7 +101,7 @@ const eliminarParticipante = async (req: Request, res: Response) => {
 	}
 
 	// elimina el participante
-	const resultado = await salasService.deleteParticipante(usuario_id, sala_id);
+	const resultado = await salasService.deleteParticipante(Number(usuario_id), String(sala_id));
 
 	// Sí no se afectó ninguna fila de la tabla
 	if (!resultado) {

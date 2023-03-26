@@ -23,7 +23,7 @@ salasRouter.post('/addParticipante', salasController.addParticipante);
 salasRouter.get('/participantes', salasController.getParticipantes);
 
 // Elimina un participante de la sala
-salasRouter.post('/eliminar-participante', salasController.eliminarParticipante);
+salasRouter.delete('/eliminar-participante/:usuario_id/:sala_id', salasController.eliminarParticipante);
 
 salasRouter.put('/cambiarNombreSala', salasController.cambiarNombreSala);
 
