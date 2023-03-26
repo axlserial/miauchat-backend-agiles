@@ -35,10 +35,7 @@ export const messageClousure = (socket: Socket) => {
 		// Guardamos el archivo en el servidor
 		const path = join(
 			__dirname,
-			'..',
-			'..',
-			'..',
-			'uploads',
+			'../../../uploads',
 			`${nombre_server}.${archivo.extension}`
 		);
 

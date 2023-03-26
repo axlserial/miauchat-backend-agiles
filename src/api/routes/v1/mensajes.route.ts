@@ -7,4 +7,7 @@ const mensajesRouter = express.Router();
 // Obtiene todos los mensajes
 mensajesRouter.get('/', mensajesController.getMensajes);
 
+// Obtiene todos los mensajes de una sala
+mensajesRouter.get('/mensajes-sala/:sala_id', mensajesController.getMensajesBySala);
+
 export default mensajesRouter;
