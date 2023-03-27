@@ -31,4 +31,7 @@ salasRouter.put('/cambiarNombreSala', salasController.cambiarNombreSala);
 //Eliminar la sala
 salasRouter.delete('/eliminarSala/:sala_id', salasController.eliminarSala);
 
+//Cambiar administrador
+salasRouter.put('/cambiarAdmiSala/:Nuevo_Creador_id/:sala_id', salasController.cambiarAdmiSala);
+
 export default salasRouter;

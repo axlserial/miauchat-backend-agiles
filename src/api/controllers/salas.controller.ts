@@ -86,7 +86,7 @@ const getParticipantes = async (req: Request, res: Response) => {
 	const participantes = await salasService.getParticipantes(sala_id);
 	console.log(participantes)
 	if (participantes.length > 0) {
-		res.status(201).json({ message: participantes });
+		res.json(participantes);
 		return;
 	}
 	res.status(400).json({ message: 'No se pudo obtener los participantes' });
@@ -139,6 +139,18 @@ const eliminarSala = async (req: Request, res: Response) => {
 	res.json({ message: 'Sala eliminada con éxito' });
 }
 
+const cambiarAdmiSala = async (req: Request, res: Response) => {
+	const { Nuevo_Creador_id, sala_id } = req.params
+	const resultado = await salasService.updateAdmi(Number(Nuevo_Creador_id), sala_id);
+	// Sí no se afectó ninguna fila de la tabla
+	if (!resultado) {
+		res.status(400).json({ message: 'Error al cambiar de administrador de la sala' });
+		return;
+	}
+
+	res.json({ message: 'Administrador de la sala modificado con éxito' });
+}
+
 export default {
 	getSalas,
 	crearSala,
@@ -148,5 +160,6 @@ export default {
 	getParticipantes,
 	eliminarParticipante,
 	cambiarNombreSala,
-	eliminarSala
+	eliminarSala,
+	cambiarAdmiSala
 };

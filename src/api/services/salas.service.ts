@@ -77,14 +77,33 @@ const deleteParticipante = async (usuario_id: number, sala_id: string) => {
 	return db('sala_participantes').where({ usuario_id, sala_id }).del();
 };
 
+/**
+ * Servicio que cambia el nombre de una sala
+ * @param sala_id ID de la sala
+ * @param nuevo_nombre Nuevo nombre para la sala
+ * @returns Número de filas afectadas
+ */
 const changeNameSala = async (sala_id: string, nuevo_nombre: string) => {
 	return db('salas').where('id',sala_id).update({ nombre_sala: nuevo_nombre });
 };
 
+/**
+ * Servicio que elimina una sala
+ * @param sala_id ID de la sala
+ * @returns Número de filas afectadas
+ */
 const deleteSala = async (sala_id: string) => {
-	console.log("deleteSala en services")
 	return db('salas').where('id',sala_id).del();
 }
+/**
+ * Servicio que cambia el administrador de una sala
+ * @param Nuevo_Creador_id ID del nuevo administrador de la sala
+ * @param sala_id ID de la sala
+ * @returns Número de filas afectadas
+ */
+ const updateAdmi = async (Nuevo_Creador_id: number, sala_id: string) => {
+	return db('salas').where('id',sala_id).update({ creador_id: Nuevo_Creador_id });
+};
 
 export default {
 	getSalas,
@@ -95,5 +114,6 @@ export default {
 	getParticipantes,
 	deleteParticipante,
 	changeNameSala,
-	deleteSala
+	deleteSala,
+	updateAdmi
 };
