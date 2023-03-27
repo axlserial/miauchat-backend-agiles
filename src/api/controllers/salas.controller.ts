@@ -74,8 +74,8 @@ const addParticipante = async (req: Request, res: Response) => {
 };
 
 const getParticipantes = async (req: Request, res: Response) => {
-	const { sala_id } = req.body;
-
+	const { sala_id } = req.params;
+	console.log('participantesControoller')
 	// Validar que los datos no estén vacíos
 	if (!sala_id) {
 		res.status(400).json({ message: 'Faltan datos' });
@@ -84,6 +84,7 @@ const getParticipantes = async (req: Request, res: Response) => {
 
 	// Obtener participantes
 	const participantes = await salasService.getParticipantes(sala_id);
+	console.log(participantes)
 	if (participantes.length > 0) {
 		res.status(201).json({ message: participantes });
 		return;
@@ -124,6 +125,20 @@ const cambiarNombreSala = async (req: Request, res: Response) => {
 	res.json({ message: 'Nombre de Sala modificado con éxito' });
 }
 
+const eliminarSala = async (req: Request, res: Response) => {
+	console.log("controller eliminarSala")
+	const { sala_id } =req.params
+	const resultado = await salasService.deleteSala(sala_id);
+
+	// Sí no se afectó ninguna fila de la tabla
+	if (!resultado) {
+		res.status(400).json({ message: 'Error al eliminar la sala' });
+		return;
+	}
+
+	res.json({ message: 'Sala eliminada con éxito' });
+}
+
 export default {
 	getSalas,
 	crearSala,
@@ -132,5 +147,6 @@ export default {
 	addParticipante,
 	getParticipantes,
 	eliminarParticipante,
-	cambiarNombreSala
+	cambiarNombreSala,
+	eliminarSala
 };

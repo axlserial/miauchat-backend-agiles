@@ -20,11 +20,15 @@ salasRouter.post('/crear', salasController.crearSala);
 salasRouter.post('/addParticipante', salasController.addParticipante);
 
 // Obtener participantes de una sala
-salasRouter.get('/participantes', salasController.getParticipantes);
+salasRouter.get('/participantes/:sala_id', salasController.getParticipantes);
 
 // Elimina un participante de la sala
 salasRouter.delete('/eliminar-participante/:usuario_id/:sala_id', salasController.eliminarParticipante);
 
+//Cambair el nombre de la sala
 salasRouter.put('/cambiarNombreSala', salasController.cambiarNombreSala);
+
+//Eliminar la sala
+salasRouter.delete('/eliminarSala/:sala_id', salasController.eliminarSala);
 
 export default salasRouter;

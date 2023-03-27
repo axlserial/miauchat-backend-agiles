@@ -62,7 +62,8 @@ const addParticipante = async (sala: any): Promise<JSON[]> => {
  * @param sala_id ID de la sala
  * @returns participantes
  */
-const getParticipantes = async (sala_id: number): Promise<JSON[]> => {
+const getParticipantes = async (sala_id: string): Promise<JSON[]> => {
+	console.log('salas.service')
 	return db.select('usuarios.id', 'usuarios.usuario').from('usuarios').join('sala_participantes', 'usuarios.id', '=', 'sala_participantes.usuario_id').where('sala_participantes.sala_id', sala_id );
 };
 
@@ -80,8 +81,10 @@ const changeNameSala = async (sala_id: string, nuevo_nombre: string) => {
 	return db('salas').where('id',sala_id).update({ nombre_sala: nuevo_nombre });
 };
 
-
-
+const deleteSala = async (sala_id: string) => {
+	console.log("deleteSala en services")
+	return db('salas').where('id',sala_id).del();
+}
 
 export default {
 	getSalas,
@@ -91,5 +94,6 @@ export default {
 	addParticipante,
 	getParticipantes,
 	deleteParticipante,
-	changeNameSala
+	changeNameSala,
+	deleteSala
 };
