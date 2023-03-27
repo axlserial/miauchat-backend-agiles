@@ -17,6 +17,14 @@ const getMensajesBySala = async (sala_id: string) => {
 		.orderBy('mensajes.fecha_enviado', 'asc');
 };
 
+const getArchivoByNombreServer = async (nombre_server: string) => {
+	return db
+		.select('*')
+		.from<archivo_adjunto>('archivos_adjuntos')
+		.where('nombre_server', nombre_server)
+		.first();
+};
+
 const getArchivosByMensajes = async (mensaje_id: number[]) => {
 	return db
 		.select('*')
@@ -41,6 +49,7 @@ const registrarArchivo = async (archivo: archivo_adjunto) => {
 export default {
 	getMensajes,
 	getMensajesBySala,
+	getArchivoByNombreServer,
 	getArchivosByMensajes,
 	registrarMensaje,
 	registrarArchivo

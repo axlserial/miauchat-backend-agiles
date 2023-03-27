@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { mensaje, mensaje_sala } from '../../types';
 import mensajesService from '../services/mensajes.service';
+import { join } from 'path';
 
 const getMensajes = async (req: Request, res: Response) => {
 	const data = await mensajesService.getMensajes();
@@ -34,7 +35,31 @@ const getMensajesBySala = async (req: Request, res: Response) => {
 	res.json(mensajes);
 };
 
+const sendAdjunto = async (req: Request, res: Response) => {
+	const { nombre_server } = req.params;
+
+	// Obtener el archivo de la base de datos
+	const data = await mensajesService.getArchivoByNombreServer(nombre_server);
+
+	// Descargar el archivo
+	if (data) {
+		res.download(
+			join(__dirname, `../../../uploads/${data.nombre_server}.${data.extension}`),
+			`${data.nombre_archivo}.${data.extension}`,
+			err => {
+				if (err) {
+					res.status(500).json({ message: 'Error al descargar el archivo' });
+				}
+			}
+		);
+	} else {
+		// Si no se encuentra el archivo, regresar un error
+		res.status(404).json({ message: 'Archivo no encontrado' });
+	}
+};
+
 export default {
 	getMensajes,
-	getMensajesBySala
+	getMensajesBySala,
+	sendAdjunto
 };

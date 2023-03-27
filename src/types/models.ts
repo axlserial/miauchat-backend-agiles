@@ -2,14 +2,14 @@ export type sala = {
 	id?: string;
 	creador_id: number;
 	nombre_sala: string;
-	ultimo_mensaje: Date;
+	ultimo_mensaje: string;
 };
 
 export type mensaje = {
 	id?: number;
 	contenido: string;
 	emisor_id: number;
-	fecha_enviado: Date;
+	fecha_enviado: string;
 	sala_id: string;
 	es_adjunto: number;
 };
@@ -19,7 +19,7 @@ export type mensaje_with_author = {
 	usuario: string;
 	contenido: string;
 	emisor_id: number;
-	fecha_enviado: Date;
+	fecha_enviado: string;
 	sala_id: string;
 	es_adjunto: number;
 };

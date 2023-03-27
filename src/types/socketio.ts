@@ -1,7 +1,7 @@
-import { mensaje } from './models';
+import { mensaje_with_author } from './models';
 
 export type DataSend = {
-	mensajeData: mensaje;
+	mensajeData: mensaje_with_author;
 	archivoData?: {
 		archivo: Buffer;
 		nombre: string;
