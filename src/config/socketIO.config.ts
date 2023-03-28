@@ -5,6 +5,7 @@ import { Server } from 'socket.io';
 import { options } from './cors.config';
 import salas_db from './chats/salas.config';
 import message_config from './chats/mensajes.config';
+import { sala } from '../types';
 
 const socketIOConfig = (app: Express) => {
 	const server = createServer(app);
@@ -34,6 +35,21 @@ const socketIOConfig = (app: Express) => {
 
 		// Evento de actualización de salas cuando se unen
 		socket.on('join-salas', async () => await salas_usuario.joinSalas());
+
+		// Evento de actualización de nombre de sala
+		socket.on('change-name-sala', (sala: sala) =>
+			socket.broadcast.emit('name-sala', sala)
+		);
+
+		// Evento de actualización de salas cuando se eliminan
+		socket.on('delete-sala', (sala: string) =>
+			socket.broadcast.emit('deleted-sala', sala)
+		);
+
+		// Evento cuando se pasa el manto de admin
+		socket.on('new-admin', (admin_id: number, sala_id: string) =>
+			socket.broadcast.emit('newed-admin', admin_id, sala_id)
+		);
 
 		// Evento de actualización de salas cuando se salen
 		socket.on('leave-salas', async () => await salas_usuario.leaveSalas());

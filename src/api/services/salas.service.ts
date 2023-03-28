@@ -9,6 +9,13 @@ const getSalas = async () => {
 };
 
 /**
+ * Servicio que regresa una sala por su id
+ */
+const getSala = async (id: string) => {
+	return db.select('*').from<sala>('salas').where({ id }).first();
+};
+
+/**
  * Servicio que regresa los IDs de las salas a las que un usuario
  * está inscrito
  */
@@ -63,8 +70,12 @@ const addParticipante = async (sala: any): Promise<JSON[]> => {
  * @returns participantes
  */
 const getParticipantes = async (sala_id: string): Promise<JSON[]> => {
-	console.log('salas.service')
-	return db.select('usuarios.id', 'usuarios.usuario').from('usuarios').join('sala_participantes', 'usuarios.id', '=', 'sala_participantes.usuario_id').where('sala_participantes.sala_id', sala_id );
+	console.log('salas.service');
+	return db
+		.select('usuarios.id', 'usuarios.usuario')
+		.from('usuarios')
+		.join('sala_participantes', 'usuarios.id', '=', 'sala_participantes.usuario_id')
+		.where('sala_participantes.sala_id', sala_id);
 };
 
 /**
@@ -84,7 +95,7 @@ const deleteParticipante = async (usuario_id: number, sala_id: string) => {
  * @returns Número de filas afectadas
  */
 const changeNameSala = async (sala_id: string, nuevo_nombre: string) => {
-	return db('salas').where('id',sala_id).update({ nombre_sala: nuevo_nombre });
+	return db('salas').where('id', sala_id).update({ nombre_sala: nuevo_nombre });
 };
 
 /**
@@ -93,20 +104,21 @@ const changeNameSala = async (sala_id: string, nuevo_nombre: string) => {
  * @returns Número de filas afectadas
  */
 const deleteSala = async (sala_id: string) => {
-	return db('salas').where('id',sala_id).del();
-}
+	return db('salas').where('id', sala_id).del();
+};
 /**
  * Servicio que cambia el administrador de una sala
  * @param Nuevo_Creador_id ID del nuevo administrador de la sala
  * @param sala_id ID de la sala
  * @returns Número de filas afectadas
  */
- const updateAdmi = async (Nuevo_Creador_id: number, sala_id: string) => {
-	return db('salas').where('id',sala_id).update({ creador_id: Nuevo_Creador_id });
+const updateAdmi = async (Nuevo_Creador_id: number, sala_id: string) => {
+	return db('salas').where('id', sala_id).update({ creador_id: Nuevo_Creador_id });
 };
 
 export default {
 	getSalas,
+	getSala,
 	getSalasByUsuario,
 	crearSala,
 	getSalasById,

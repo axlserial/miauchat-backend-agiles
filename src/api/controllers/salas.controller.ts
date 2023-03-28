@@ -45,6 +45,13 @@ const getSalasUsuario = async (req: Request, res: Response) => {
 const addParticipante = async (req: Request, res: Response) => {
 	const { usuario_id, sala_id } = req.body;
 
+	const sala_datos = await salasService.getSala(sala_id);
+
+	if (!sala_datos) {
+		res.status(400).json({ message: 'Sala invalida' });
+		return;
+	}
+
 	// Validar que los datos no estén vacíos
 	if (!usuario_id || !sala_id) {
 		res.status(400).json({ message: 'Faltan datos' });
@@ -66,7 +73,7 @@ const addParticipante = async (req: Request, res: Response) => {
 
 	// Validar que el usuario se haya agregado correctamente
 	if (ingresoUsuario.length > 0) {
-		res.status(201).json({ message: 'Usuario agregado a la sala' });
+		res.status(201).json(sala_datos);
 		return;
 	}
 
